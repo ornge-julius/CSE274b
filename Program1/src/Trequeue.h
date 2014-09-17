@@ -1,80 +1,104 @@
-/*
- * Trequeue.h
- *
- *  Created on: Sep 15, 2014
- *      Author: Julius Ware
- */
 
-#ifndef TREQUEUE_H_
-#define TREQUEUE_H_
+ #ifndef Trequeue_H_
+#define Trequeue_H_
 #include "ArrayDeque.h"
-#include "array.h"
-#include "utils.h"
 
+namespace ods {
 
-
-template <class T>
-class Trequeue{
-  protected:
-	 	 ArrayDeque<T> front;
-	 	 ArrayDeque<T> back; /* there is something wrong with the way I am calling ArrayDeque.
-	 	 	 	 	 	 	 Because of this I am not able to call the functions I need to compile and run the code.
-	 	 	 	 	 	 	 These functions are giving the red errors here and below.*/
-	 	 void balance();
-  public:
-	 	 Trequeue();
-	 	 ~Trequeue();
-	 	 int size();
-	 	 T get(int index);
-	 	 T set(int index, T input);
-	 	 void add(int index, T input);
-	 	 T remove(int index);
-	 	 void clear;
-
-
+template<class T>
+class Trequeue {
+protected:
+	ArrayDeque<T> front;
+	ArrayDeque<T> back;
+	void balance();
+public:
+	Trequeue();
+	virtual ~Trequeue();
+	int size();
+	T get(int i);
+	T set(int i, T x);
+	virtual void add(int i, T x);
+	virtual T remove(int i);
+	virtual void clear();
 };
 
-template <class T> inline // what does this do? (inline)
-T Trequeue<T>::get(int index){
-	if(index < front.size()){
-		return front.get(front.size() - index - 1);
+template<class T> inline
+T Trequeue<T>::get(int i) {
+	if (i < front.size()) {
+		return front.get(i);
 	} else {
-		return back,get(index - front.size());
+		return back.get(i - front.size());
 	}
 }
 
-template <class T> inline
-T Trequeue<T>::set(int index, T input){
-	if( index < front.size()) {
-		return front.set(front.size() - index - 1, input);
+template<class T> inline
+T Trequeue<T>::set(int i, T x) {
+	if (i < front.size()) {
+		return front.set(i, x);
 
 	} else {
-		return back.set(index - front.size(), input);
+		return back.set(i - front.size(), x);
 	}
-}
-
-template <class T> inline
-void Trequeue <T>::add(int index, T input){
-	if(index < front.size()) {
-		front.add(front.size() - index, input);
-	} else {
-		back.add(index - front.size(), input);
-	}
-  balance();
 }
 
 template<class T>
-T Trequeue<T>::remove(int index){
-	T input;
-	if (index < front.size()){
-		input = front.remove(front.size()- index - 1);
-	} else {
-		input = back.remove(index - front.size());
-	}
-  balance();
+Trequeue<T>::Trequeue() {
 }
 
-// does the code overall look how it should? does it make sense??
+template<class T>
+Trequeue<T>::~Trequeue() {
 
+}
 
-#endif /* TREQUEUE_H_ */
+template<class T>
+int Trequeue<T>::size() {
+	return front.size() + back.size();
+}
+
+template<class T>
+void Trequeue<T>::add(int i, T x) {
+	if (i < front.size()) {
+		front.add(i, x);
+	} else {
+		back.add(i - front.size(), x);
+	}
+	balance();
+}
+
+template<class T>
+T Trequeue<T>::remove(int i) {
+    T x;
+    if (i < front.size()) {
+            x = front.remove(i);
+    } else {
+            x = back.remove(i-front.size());
+    }
+    balance();
+    return x;
+}
+
+template<class T>
+void Trequeue<T>::balance() {
+	T xy;
+	if(front.size() == back.size() + 2){
+		xy = front.get(front.size());
+		front.remove(front.size());
+		back.add(0, xy);
+	} else if (back.size() == front.size() + 2) {
+		xy = back.get(back.size());
+		back.remove(back.size());
+		front.add(0, xy);
+	}
+
+return;
+
+}
+
+template<class T>
+void Trequeue<T>::clear() {
+	front.clear();
+	back.clear();
+}
+
+}
+#endif /* Trequeue_H_ */

@@ -9,22 +9,20 @@
 #include <iostream>
 #include "array.h"
 #include "ArrayDeque.h"
+#include "Trequeue.h"
 
 
 using namespace std;
 using namespace ods;
 
 int main() {
-	ArrayDeque<char> queue;
+	Trequeue<int> queue;
 
-	queue.add(0, 'a');
-	queue.add(0, 'b');
-	queue.add(0, 'c');
-
-   char result = queue.get(1);
-   cout << "position 1 " << result << endl;
-   result = queue.get(2);
-   cout << "position 2" << result << endl;
+	queue.add(0,4);
+	queue.add(0, 5);
+	queue.add(0, 8);
+	queue.add( 6, 7);
+	 cout << queue.get(6) << endl;
 
 	return 0;
 }
