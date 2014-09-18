@@ -7,7 +7,7 @@ namespace ods {
 
 template<class T>
 class Trequeue {
-protected:
+public:
 	ArrayDeque<T> front;
 	ArrayDeque<T> back;
 	void balance();
@@ -74,26 +74,36 @@ T Trequeue<T>::remove(int i) {
             x = back.remove(i-front.size());
     }
     balance();
-    return x;
+ return x;
 }
 
 template<class T>
 void Trequeue<T>::balance() {
 	T xy;
 	if(front.size() == back.size() + 2){
-		xy = front.get(front.size());
-		front.remove(front.size());
+		xy = front.remove(front.size());
 		back.add(0, xy);
 	} else if (back.size() == front.size() + 2) {
-		xy = back.get(back.size());
-		back.remove(back.size());
-		front.add(0, xy);
+		xy = back.remove(back.get(0));
+		front.add(front.size(), xy);
 	}
 
 return;
 
 }
 
+/*template<class T>
+void Trequeue<T>::balance() {
+	T xy;
+
+	if (back.size() > front.size()){
+		do{
+			xy = back.remove(back.get(0));
+			front.add(front.size(), xy);
+		} until(back.size() - front > 1);
+	}
+}
+*/
 template<class T>
 void Trequeue<T>::clear() {
 	front.clear();
