@@ -92,18 +92,7 @@ return;
 
 }
 
-/*template<class T>
-void Trequeue<T>::balance() {
-	T xy;
 
-	if (back.size() > front.size()){
-		do{
-			xy = back.remove(back.get(0));
-			front.add(front.size(), xy);
-		} until(back.size() - front > 1);
-	}
-}
-*/
 template<class T>
 void Trequeue<T>::clear() {
 	front.clear();
