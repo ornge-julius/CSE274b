@@ -28,9 +28,7 @@ int main() {
 
 	}
 
-	for(int i = 0; i < myTable.size(); i++){
-		cout << "list " << i << " size:" << cout << myTable.t[i].size() << endl;
-	}
+
 	cout << "longest list:" << myTable.getLongList() << endl;
 	cout << "t.length:" <<  myTable.t.length<< endl;
 	cout << "table size: " << myTable.size() << endl;
