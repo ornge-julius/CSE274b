@@ -1,0 +1,31 @@
+Binary Search Tree
+AddSeq: 11673.8
+AddRand: 7530.25
+FindSeq: 10010.5
+FindRand: 10327.8
+RemSeq: 4.15
+RemRand: 1.35
+
+Red Black Tree
+AddSeq: 18.25
+AddRand: 21.85
+FindSeq: 8.15
+FindRand: 8.9
+RemSeq: 13.4
+RemRand: 1.8
+
+LinearHashTable
+AddSeq: 6.3
+AddRand: 2.75
+FindSeq: 1.65
+FindRand:1.8
+RemSeq: 5
+RemRand: 1.45
+
+ChainedHashTable
+AddSeq: 11
+AddRand: 7.4
+FindSeq: 6
+FindRand: 6.35
+RemSeq: 7.3
+RemRand: 1.7
